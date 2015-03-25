@@ -5,6 +5,15 @@ module.exports = function(environment) {
     modulePrefix: 'simple-auth-demo',
     environment: environment,
     baseURL: '/',
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self'",
+      'font-src': "'self' fonts.gstatic.com",
+      'connect-src': "'self'",
+      'img-src': "'self' data: www.gravatar.com gravatar.com",
+      'style-src': "'self' 'unsafe-inline' *",
+      'media-src': "'self'"
+    },
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -18,6 +27,12 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+
+  ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:devise',
+    authenticationRoute: 'login',
+    routeIfAlreadyAuthenticated: 'application'
+  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
